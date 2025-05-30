@@ -1,0 +1,102 @@
+body {
+  /* font-family: Arial, sans-serif;
+  padding: 20px;
+  background: #f0f0f0;
+   background-color: #fef6e4;
+  color: #5c5c5c; */
+  
+  
+  /* font-family: 'Poppins', sans-serif;
+  padding: 30px;
+  background-color: #fef6e4;
+  color: #5c5c5c; */
+
+
+   font-family: 'Poppins', sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(270deg, #fbdce2, #fdebd3, #d6f5f2, #f2e4fb);
+  background-size: 800% 800%;
+  animation: pastelGradient 20s ease infinite;
+  color: #5c5c5c;
+  padding: 30px;
+}
+
+@keyframes pastelGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+h1 {
+  /* text-align: center;
+  color: #8b5e83;
+  margin-bottom: 30px; */
+
+   
+    
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #7a5c61;
+  margin-bottom: 40px;
+  border-bottom: 2px solid #e4c9c1;
+  /* display: inline-block; */
+  padding-bottom: 5px;
+  /* margin-left: auto;
+  margin-right: auto; */ 
+  text-align: center;
+
+} 
+
+.libros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.libro {
+ background-color: #fff1f1;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.8); 
+  padding: 20px;
+  transition: transform 0.2s ease;
+ 
+  
+}
+.libro:hover {
+  transform: scale(1.02);
+}
+
+.libro img {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  height: auto;
+  /* border-radius: 5px; */
+   border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.libro h3 {
+  /* margin: 10px 0 5px; */
+ margin: 0 0 10px;
+  color: #7a5c61;
+
+}
+
+.libro p {
+  font-size: 14px;
+  /* color: #555; */
+
+   color: #6d6d6d;
+  line-height: 1.5;
+}
