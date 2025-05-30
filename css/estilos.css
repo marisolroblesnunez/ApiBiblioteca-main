@@ -100,3 +100,58 @@ h1 {
    color: #6d6d6d;
   line-height: 1.5;
 }
+
+
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.hidden{
+    display: none;
+}
+
+.modal-contenido {
+  background-color: #fffefc;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 480px;
+  width: 90%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  position: relative;
+  animation: abrirModal 0.4s ease;
+}
+
+@keyframes abrirModal {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.modal-contenido img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.modal-contenido p {
+  font-size: 0.95rem;
+  color: #5c5c5c;
+  line-height: 1.4;
+}
+
+.cerrar {
+  position: absolute;
+  top: 8px; right: 12px;
+  font-size: 24px;
+  color: #999;
+  cursor: pointer;
+}
+
