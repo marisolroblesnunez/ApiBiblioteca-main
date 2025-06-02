@@ -1,0 +1,33 @@
+titulo: El mundo de Sofia
+autor: Jostein Gaarder
+genero: Filosofia
+fecha_publicacion: 1991
+imagen: el_mundo_de_sofia.jpg
+resumen: #resumen del libro 
+jawiefjalskdjfasekfklasjfad
+
+
+SQL para insertar un nuevo libro en la tabla libros
+
+INSERT INTO nombreTabla (campo1, campo2, campo3) VALUES (valor1, valor2, valor3);
+
+Para eliminar un libro por su id
+DELETE FROM nombreTabla WHERE condicion
+
+Eliminar todos los libros que no estan disponibles
+DELETE FOM libros WHERE disponible = 0
+
+Elimina el libro con id = 13
+DELETE FROM libros WHERE id = 13;
+
+
+endpoints de la API:
+
+GET ApiBiblioteca/api/libros - devuelve todos los libros
+GET ApiBiblioteca/api/libros/3 - devuelve el libro con id = 3
+POST ApiBiblioteca/api/libros - crea un nuevo libro (datos en el body de la peticion)
+PUT ApiBiblioteca/api/libros/3 - actualiza los datos del libro con id = 3
+DELETE ApiBiblioteca/api/libros/3 - elimina  el libro con id 3
+
+endpoints para la tabla usuarios
+GET ApiBiblioteca/api/usuarios

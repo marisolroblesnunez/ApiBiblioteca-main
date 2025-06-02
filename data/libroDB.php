@@ -62,5 +62,70 @@ class LibroDB {
         //algo falló
         return null;
     }
+    
+    
+    
+    
+    
+    //Crear un nuevo libro
+    public function create($data){
 
-}
+        /////////////////////aqui tengo que poner justo el mismo nombre que he puesto cuando he creado el campo, en phpMyAdmin en estructura, aqui salen los campos.
+        $sql = "INSERT INTO {$this->table}(titulo, autor, genero, fecha_publicacion, disponible, img, favorito, resumen) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        $stmt = $this->db->prepare($sql);
+        if($stmt){
+            //comprobar los datos opcionales
+            $genero = isset($data['genero']) ? $data['genero'] : null;  ////cuando pongo ? / : esto es igual que if/else
+            $fecha_publicacion = isset($data['fecha_publicacion']) ? $data['fecha_publicacion'] : null;
+            $disponible = isset($data['disponible']) ? (int)(bool)$data['disponible'] : 1;
+            $imagen = isset($data['imagen']) ? $data['imagen'] : null;
+            $favorito = isset($data['favorito']) ? (int)(bool)$data['favorito'] : 0;
+            $resumen = isset($data['resumen']) ? $data['resumen'] : null;
+
+            $stmt->bind_param( /////aqui tenemos que decir el tipo de parametro, S si es un string y I de int (el primero el titulo-(s porque es un string), autor ( s porque es un string), genero (s porque es un string), fecha_publicacion (i porque es un INT)...) tiene que haber 8
+                "sssiisis",
+                $data['titulo'], //en la variable data pongo los datos que son obligatorios
+                $data['autor'],
+                $genero,
+                $fecha_publicacion,
+                $disponible,
+                $imagen,
+                $favorito,
+                $resumen
+            );
+
+            if($stmt->execute()){
+                //obtengo el id del libro que se acaba de crear
+                $id = $this->db->insert_id;
+                $stmt->close();
+                ///devuelve todos los datos del libro que acabamos de crear
+                return $this->getById($id);
+            }
+            $stmt->close();
+        }
+        return false; ///porque no se a podido crear el libro por lo que sea
+    }
+
+
+    //actualizar libro
+    public function update($id, $datos){
+        //
+    }
+   
+   
+   
+            //eliminar un libro
+        public function delete($id){
+            $sql = "DELETE FROM {$this->table} Where id = ? ";
+            $stmt = $this->db->prepare($sql);
+            if($stmt){
+                $stmt->bind_param("i", $id);
+                $result = $stmt->execute();
+                $stmt->close();
+                return $result;
+            }
+            return false;
+        }
+
+    }
