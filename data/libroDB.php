@@ -1,6 +1,6 @@
 <?php
 /**
- * Se encarga de interactuar con la base de datos
+ * Se encarga de interactuar con la base de datos con la tabla libro hay que crear una clase por cada tabla en este caso solo tenemos una tabla entonces hacemos solo una clase, (clase libro db) para hacerle consultas a la base de datos.
  */
 class LibroDB {
 
@@ -79,7 +79,7 @@ class LibroDB {
             $genero = isset($data['genero']) ? $data['genero'] : null;  ////cuando pongo ? / : esto es igual que if/else
             $fecha_publicacion = isset($data['fecha_publicacion']) ? $data['fecha_publicacion'] : null;
             $disponible = isset($data['disponible']) ? (int)(bool)$data['disponible'] : 1;
-            $imagen = isset($data['imagen']) ? $data['imagen'] : null;
+            $imagen = isset($data['img']) ? $data['img'] : null;
             $favorito = isset($data['favorito']) ? (int)(bool)$data['favorito'] : 0;
             $resumen = isset($data['resumen']) ? $data['resumen'] : null;
 
@@ -109,8 +109,67 @@ class LibroDB {
 
 
     //actualizar libro
-    public function update($id, $datos){
-        //
+    public function update($id, $data){
+
+ //leer los datos actuales
+    $libro = $this->getById($id);
+    if (!$libro) {
+        
+        return false; //si no existe devolvemos falso
+    }
+
+      $sql = "UPDATE {$this->table} SET
+      titulo = ?,
+      autor = ?,
+      genero = ?,
+      fecha_publicacion = ?,
+      disponible = ?,
+      img = ?, 
+      favorito = ?,
+      resumen = ?
+      WHERE id = ? 
+      ";
+        
+       
+        // Todo esto de aqui abajo significa:
+        //si existe el titulo es porque quiero cambiar en titulo, entonces meto el titulo del nuevo nombre que quiero, y si no, pues meto el titulo que tenia
+        ///el id no se tiene que poner porque no quiero cambiarlo
+        $titulo = isset($data['titulo']) ? $data['titulo'] : $libro['titulo'];
+        $autor = isset($data['autor']) ? $data['autor'] : $libro['autor'];
+        $genero = isset($data['genero']) ? $data['genero'] : $libro['genero'];
+        $fecha_publicacion = isset($data['fecha_publicacion']) ? $data['fecha_publicacion'] : $libro['fecha_publicacion'];
+        $disponible = isset($data['titulo']) ? $data['titulo'] : $libro['titulo'];
+        $imagen = isset($data['disponible']) ? (int)(bool)$data['disponible'] : $libro['disponible'];
+        $favorito = isset($data['favorito']) ? (int)(bool)$data['favorito'] : $libro['favorito'];
+        $resumen = isset($data['resumen']) ? $data['resumen'] : $libro['resumen'];
+
+
+
+
+        $stmt = $this->db->prepare($sql);
+        if($stmt){
+          
+            $stmt->bind_param( /////aqui tenemos que decir el tipo de parametro, S si es un string y I de int (el primero el titulo-(s porque es un string), autor ( s porque es un string), genero (s porque es un string), fecha_publicacion (i porque es un INT)...) tiene que haber 8
+                "sssiisisi",
+                $titulo, 
+                $autor,
+                $genero,
+                $fecha_publicacion,
+                $disponible,
+                $imagen,
+                $favorito,
+                $resumen, 
+                $id
+            );
+
+            if($stmt->execute()){
+                $stmt->close();
+                ///devuelve todos los datos del libro que acabamos de crear
+                return $this->getById($id);
+            }
+            $stmt->close();
+        }
+        return false; 
     }
    
    

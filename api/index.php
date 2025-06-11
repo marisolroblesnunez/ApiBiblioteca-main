@@ -54,10 +54,10 @@ if(isset($segments[3])){
 $database = new Database();
 
 //crea una instancia de LibroController
-$controller = new LibroController($database, $requestMethod, $libroId);
+$controller = new LibroController($database, $requestMethod, $libroId);// le pasamos la conexion de la base y el metodo que utiliza
 
 //procesar la petición
-$controller->processRequest($libroId);
+$controller->processRequest(); //este es el que se encarga de darle la respuesta segun el metodo que utuliza
 
 //cerrar la conexión
 $database->close();
