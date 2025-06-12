@@ -75,10 +75,10 @@ if (datos.success && datos.count > 0) {
         <td>${libro.titulo}</td>
         <td>${libro.autor}</td>
         <td>${libro.genero}</td>
-        <td>${libro.fecha_publicacion}</td>
-        <td>${(libro.disponible == 1) ? "Sí" : "No"}</td>
-        <td><img src="../img/imgPequenias/${libro.img}?${new Date().getTime()}" alt="${libro.titulo}"  onclick="openModal('${libro.titulo}')"/></td>
-        <td>${(libro.favorito == 1) ? "Sí" : "No"}</td>
+        <td class="centrado">${libro.fecha_publicacion}</td>
+        <td class="centrado">${(libro.disponible == 1) ? "Sí" : "No"}</td>
+        <td>${(libro.img && libro.img.trim() !== '') ? `<img src="../img/imgPequenias/${libro.img}?${new Date().getTime()}" alt="${libro.titulo}"/>` : 'Sin Imagen'}</td>
+        <td class="centrado">${(libro.favorito == 1) ? "Sí" : "No"}</td>
         <td>${(libro.resumen !== null && libro.resumen.length > 0) ? libro.resumen.substring(0, 100)+"..." : ''}</td>
         <td><button onclick="editarLibro(${libro.id})">Editar</button></td>
         <td><button onclick="eliminarLibro(${libro.id}, '${libro.titulo}')" class="btn-delete">Eliminar</button></td>

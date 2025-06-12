@@ -1,5 +1,5 @@
 <?php
-//todo comprobar si el usuario esta logueado
+//todo comprobar si el usuario esta logueado y si no esta logueado lo mandamos a login
 ?>
 
 <!DOCTYPE html>

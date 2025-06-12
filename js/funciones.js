@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     if (datos.success && datos.count > 0) {
       divLibros.innerHTML = librosGlobal.map(libro => `
         <div class="libro">
-          <img src="img/imgPequenias/${libro.img}" alt="${libro.titulo}">
+          ${(libro.img && libro.img.trim() !== '') ? `<img src="../img/imgPequenias/${libro.img}?${new Date().getTime()}" alt="${libro.titulo}"/>` : 'Sin Imagen'}
           <h3>${libro.titulo}</h3>
           <p>${libro.resumen}</p>
         </div>
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
   function openModal(libro) {
     console.log(libro)
-    modalImg.src = `img/${libro.img}`; 
+    modalImg.src = `../img/${libro.img}`; ///////le puesto la ruta de las imagenes grandes para que cuando abra la modal, vea la imagen grande que es la que tiene más calidad. Pero cuando actualizo la imagen, se guarda la imagen en img pequenias, no se guarda en img grandes, entonces como aqui le puesto solo la ruta de las imagenes grandes pues no me sale imagen cuando actualizo un libro!!!!
     modalImg.alt = libro.titulo;
     modalInfo.innerHTML = `
       <strong>Género:</strong> ${libro.genero}<br>

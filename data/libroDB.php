@@ -110,14 +110,14 @@ class LibroDB {
 
     //actualizar libro
     public function update($id, $data){
-
+//////aqui primero compruebo que el libro existe
  //leer los datos actuales
     $libro = $this->getById($id);
     if (!$libro) {
         
         return false; //si no existe devolvemos falso
     }
-
+//preparo la consulta
       $sql = "UPDATE {$this->table} SET
       titulo = ?,
       autor = ?,
@@ -130,7 +130,7 @@ class LibroDB {
       WHERE id = ? 
       ";
         
-       
+       //////miro que existan todos los parámetros
         // Todo esto de aqui abajo significa:
         //si existe el titulo es porque quiero cambiar en titulo, entonces meto el titulo del nuevo nombre que quiero, y si no, pues meto el titulo que tenia
         ///el id no se tiene que poner porque no quiero cambiarlo
@@ -138,8 +138,8 @@ class LibroDB {
         $autor = isset($data['autor']) ? $data['autor'] : $libro['autor'];
         $genero = isset($data['genero']) ? $data['genero'] : $libro['genero'];
         $fecha_publicacion = isset($data['fecha_publicacion']) ? $data['fecha_publicacion'] : $libro['fecha_publicacion'];
-        $disponible = isset($data['titulo']) ? $data['titulo'] : $libro['titulo'];
-        $imagen = isset($data['disponible']) ? (int)(bool)$data['disponible'] : $libro['disponible'];
+        $disponible = isset($data['disponible']) ? (int)(bool)$data['disponible'] : $libro['disponible'];
+        $imagen = isset($data['img']) ? $data['img'] : $libro['img'];
         $favorito = isset($data['favorito']) ? (int)(bool)$data['favorito'] : $libro['favorito'];
         $resumen = isset($data['resumen']) ? $data['resumen'] : $libro['resumen'];
 

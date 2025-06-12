@@ -1,9 +1,11 @@
 <?php
 //recibe los datos de una petición y devuelve una respuesta //////////////ESTA CARPETA LO QUE HACE ES COMUNICARSE CON LA BASE DE DATOS Y DECIRLE TODO LO QUE QUEREMOS QUE PUEDA CAMBIAR EL CLIENTE////////////////////////////////
 class LibroController {
-    private $libroDB;
-    private $requestMethod;
-    private $libroId;
+
+    //estas son las propiedades de la clase lo que necesito
+    private $libroDB;//contactar con la base de datos,, esto es una estancia de database
+    private $requestMethod;// el metodo de llamada
+    private $libroId;//para que seleccione el id
 
     //el constructor recibe un objeto de la clase LibroDB
     //el método que se ha utilizado en la llamada: GET, POST, PUT o DELETE
@@ -127,7 +129,7 @@ class LibroController {
         //el libro existe y los datos que llegan son validos
 
         //guardar el nombre de la imagen actual
-        $nombreImagenAnterior = $libro['imagen'];
+        $nombreImagenAnterior = $libro['img'];
         $nombreImagenNueva = $nombreImagenAnterior;
 
         //procesar la imagen si viene
@@ -286,6 +288,16 @@ class LibroController {
             return $nombreArchivo;
         }
         return false;
+    }
+
+
+////esta funcion la hago para que cuando el cliente,() el dueño al que le voy a vender esto) borre una imagen y se me borre tambien de la programacion esta que es la que se conecta de verdad con la base de datos,para que desaparezca la imagen de el fichero de imgPequenias y asi solo esten las imágenes de los libros que esten guardados, de los que el dueño vaya borrando en la aplicacion que le hemos hecho pues que se nos borren de aqui tambien, ASI SOLO TENEMOS LAS IMAGENES DE LOS LIBROS GUARDADOS Y DE LOS ELIMINADOS PUES TAMBIEN SE BORRA LA IMAGEN DEL LIBRO BORRADO AQUI.
+    private function eliminarImagen($nombreArchivo){
+        if(empty($nombreArchivo)) return;
+        $rutaArchivo = "../img/imgPequenias/" . $nombreArchivo;
+        if(file_exists($rutaArchivo)){
+            unlink($rutaArchivo);
+        }
     }
 
    
