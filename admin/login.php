@@ -1,5 +1,6 @@
 <?php
 
+//////////////////ESTA CARPETA ES PARA HACER UN FORMULARIO, PARA QUE LOS USUARIOS QUE YA ESTAN REGISTRADOS PUEDAN METERSE EN LA API SERIA COMO UN INICIAR SESION Y ENTONCES TAMBIEN TENEMOS QUE MIRAR QUE EL USUARIO ESTE EN LA BASE DE DATOS PARA SABER QUE ESTA LOGUEADOS
 
 /**
  * Para guardar los datos de una sesion en php se utiliza la variable superglobal
@@ -9,7 +10,7 @@
  * session_start()
  */
 
-if(session_status() == PHP_SESSION_NONE){
+if(session_status() == PHP_SESSION_NONE){   ///////////esto se pone para poder utilizar despues la variable superglobal de $_SESSION[''] que hemos creado en otra carpeta
     session_start();
 }
 

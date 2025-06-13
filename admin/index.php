@@ -1,5 +1,22 @@
 <?php
 //todo comprobar si el usuario esta logueado y si no esta logueado lo mandamos a login
+
+if(session_status() == PHP_SESSION_NONE){ /////////////este if se escribe para poder leer las variables superglobales que hemos creado en la carpeta usuarioController.php
+    session_start();
+}
+
+///si no metes datos, redirigeme a login que es donde tengo el formulario////// o si no esta logueado, redirigelo tambien a login
+if(!isset($_SESSION['logueado']) || !$_SESSION['logueado']){
+  header("Location: login.php");
+}
+
+if(isset($_SESSION['mensaje'])){    /////////si está logueado, muestrame el mensaje y luego borramelo 
+  echo '<div>' . $_SESSION['mensaje']. '</div>';
+  unset($_SESSION['mensaje']);/////unset significa borrame el mensaje 
+}
+
+echo '<button id="cerrarSesion">Cerrar Sesión</button>'; //// le pongo el id porque la funcion del boton la tengo que hacer desde javascript
+
 ?>
 
 <!DOCTYPE html>
@@ -77,5 +94,6 @@
     </div> -->
     
    <script src="js/funciones.js"></script>
+   <script src="js/sesiones.js"></script>
 </body>
 </html>
