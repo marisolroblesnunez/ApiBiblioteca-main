@@ -22,9 +22,13 @@ if(session_status() == PHP_SESSION_NONE){   ///////////esto se pone para poder u
 
 
 
- //comprobar si el ususario ya esta logueado
+ //comprobar si el ususario ya esta logueado, si esta logueado, redirigir a index
 
-//si está logueado redirigir a index
+if(isset($_SESSION['logueado']) && $_SESSION['logueado'] == true){
+    //redirigir a index
+    header("Locatioon: index.php");
+    exit();
+}
 
 //mostrar un formulario que pida correo y contraseña
 
@@ -52,13 +56,45 @@ if(session_status() == PHP_SESSION_NONE){   ///////////esto se pone para poder u
             <input type="password" name="password" required placeholder="contraseña">
             <input type="submit" name="login" value="Iniciar Sesión">
         </form>
+        
+        <div class="olvido-password">
+            <a class="abrir-modal-recuperar">Recuperar contraseña</a>
+        </div>
+        <div class="crear-cuenta">
+            <a class="abrir-modal-registro">Crear cuenta nueva</a>
+        </div>
+        
+        
         <?php
         if(isset($_SESSION['mensaje'])){
             echo "<div class='error'>" . $_SESSION['mensaje'] . "</div>";
             unset($_SESSION['mensaje']);
         }
         ?>
+        <div id="modalRecuperar" class="modal">
+            <div class="modal-contenido">
+                <span class="cerrarRecuperar">&times;</span>
+                <h2>Recuperar contraseña</h2>
+                <form method="POST" action="../controllers/usuarioController.php">
+                    <input type="email" name="email" required placeholder="Correo electrónico">
+                    <input type="submit" name="recuperar" value="Recuperar Contraseña">
+                </form>
+            </div>
+        </div>
+
+        <div id="modalRegistro" class="modal">
+            <div class="modal-contenido">
+                <span class="cerrarRegistro">&times;</span>
+                <h2>Registro Cuenta nueva</h2>
+                <form method="POST" action="../controllers/usuarioController.php">
+                    <input type="email" name="email" required placeholder="correo electrónico">
+                    <input type="password" name="password" required placeholder="Contraseña">
+                    <input type="submit" name="registro" value="Registrarse">
+                </form>
+            </div>
+        </div>
     </div>
+    <script src="js/login.js"></script>
     
 </body>
 </html>
