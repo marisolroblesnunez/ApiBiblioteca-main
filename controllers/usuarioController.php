@@ -21,7 +21,7 @@ require_once '../config/database.php';
 require_once '../data/usuarioDB.php';
 //crear instancia UsuarioDB
 $database = new Database();
-$usuariodb =  new UsuarioDB($database);
+$usuariobd =  new UsuarioDB($database);
 
 
 //comprobar si el usuario quiere un inicio de sesion
@@ -29,7 +29,7 @@ $usuariodb =  new UsuarioDB($database);
 //comprobar que el metodo es post
 
 
-
+//inicio de sesion
 if(
   $_SERVER['REQUEST_METHOD'] == 'POST'
   && isset($_POST['login'])
@@ -41,25 +41,32 @@ if(
 
   $email = $_POST['email'];
   $password = $_POST['password'];
-  $resultado = $usuariodb->verificarCredenciales($email, $password);
+  $resultado = $usuariobd->verificarCredenciales($email, $password);
   //guardar la respuesta
   $_SESSION['logueado'] = $resultado['success'];
   if($resultado['success'] == true){
     $_SESSION['usuario'] = $resultado['usuario'];
     $ruta = '../admin/index.php';
+  }else{
+    $ruta = '../admin/login.php';
   }
   redirigirConMensaje($ruta, $resultado['success'], $resultado['mensaje']);
 }
 
-//comprobar si el usuario quiere registrarse 
+//comprobar si el usuario quiere registrarse registro de nuevo usuario
 if(
   $_SERVER['REQUEST_METHOD'] == 'POST'
   && isset($_POST['registro'])
   && isset($_POST['email'])
   && isset($_POST['password'])
 ){
+
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  $resultado = $usuariobd->registrarUsuario($email,$password);
   //el usuario quiere crear una cuenta nueva
-   redirigirConMensaje('../admin/login.php', true, "Quieres crear una cuenta nueva?");
+   redirigirConMensaje('../admin/login.php', $resultado['success'], $resultado['mensaje']);
 }
 
 
@@ -67,14 +74,15 @@ if(
 
 if(
   $_SERVER['REQUEST_METHOD'] == 'POST'
-  && isset($_POST['recuperar'])
+  && isset($_POST['recuperar']) 
   && isset($_POST['email'])
-  
-){
-  //el usuario quiere recuperar la contraseña
-   redirigirConMensaje('../admin/login.php', true, "Has olvidado la contraseña?");
-}
-
+  ){
+    $email = $_POST['email'];
+    
+    $resultado = $usuariobd->recuperarPassword($email);
+    redirigirConMensaje('../admin/login.php', $resultado['success'], $resultado['mensaje']);
+  }
+ 
 function redirigirConMensaje($url, $success, $mensaje){
   //almacena el resultado en la variable de sesion
   $_SESSION['success'] = $success;
