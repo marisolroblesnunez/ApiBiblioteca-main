@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
   function openModal(libro) {
     console.log(libro)
-    modalImg.src = `../img/${libro.img}`; ///////le puesto la ruta de las imagenes grandes para que cuando abra la modal, vea la imagen grande que es la que tiene más calidad. Pero cuando actualizo la imagen, se guarda la imagen en img pequenias, no se guarda en img grandes, entonces como aqui le puesto solo la ruta de las imagenes grandes pues no me sale imagen cuando actualizo un libro!!!!
+    modalImg.src = `img/${libro.img}`; ///////le puesto la ruta de las imagenes grandes para que cuando abra la modal, vea la imagen grande que es la que tiene más calidad. Pero cuando actualizo la imagen, se guarda la imagen en img pequenias, no se guarda en img grandes, entonces como aqui le puesto solo la ruta de las imagenes grandes pues no me sale imagen cuando actualizo un libro!!!!
     modalImg.alt = libro.titulo;
     modalInfo.innerHTML = `
       <strong>Género:</strong> ${libro.genero}<br>
