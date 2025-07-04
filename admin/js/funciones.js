@@ -1,5 +1,6 @@
 //cuando hicimos la api del tiempo hicimos esto, lo puedo coger de ejemplo también
 
+//const url = 'http://localhost/ApiBiblioteca-MAIN/api/libros';
 const url = 'http://localhost/ApiBiblioteca-MAIN/api/libros';
 
 let librosData = [] //almacenar los datos de todos los libros

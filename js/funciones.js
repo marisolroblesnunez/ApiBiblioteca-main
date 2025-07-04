@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     if (datos.success && datos.count > 0) {
       divLibros.innerHTML = librosGlobal.map(libro => `
         <div class="libro">
-          ${(libro.img && libro.img.trim() !== '') ? `<img src="../img/imgPequenias/${libro.img}?${new Date().getTime()}" alt="${libro.titulo}"/>` : 'Sin Imagen'}
+          ${(libro.img && libro.img.trim() !== '') ? `<img src="img/imgPequenias/${libro.img}?${new Date().getTime()}" alt="${libro.titulo}"/>` : 'Sin Imagen'}
           <h3>${libro.titulo}</h3>
           <p>${libro.resumen}</p>
         </div>

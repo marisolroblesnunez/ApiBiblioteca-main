@@ -122,10 +122,10 @@ class UsuarioDB {
                 //$mensaje = Correo::enviarCorreo($email, "Cliente", "Verificación de cuenta", $mensaje);
                 $mensaje = $this->enviarCorreoSimulado($email, "Verificación de cuenta", $mensaje);
             }else{
-                $mensaje = ["success" => false, "message" => "Error en el registro: " . $stmt->error];
+                $mensaje = ["success" => false, "mensaje" => "Error en el registro: " . $stmt->error];
             }
         }else{
-            $mensaje = ["success" => false, "message" => "Ya existe una cuenta con ese email"];
+            $mensaje = ["success" => false, "mensaje" => "Ya existe una cuenta con ese email"];
         }
 
         return $mensaje;

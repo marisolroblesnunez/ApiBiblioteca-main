@@ -26,7 +26,7 @@ if(session_status() == PHP_SESSION_NONE){   ///////////esto se pone para poder u
 
 if(isset($_SESSION['logueado']) && $_SESSION['logueado'] == true){
     //redirigir a index
-    header("Locatioon: index.php");
+    header("Location: index.php");
     exit();
 }
 
