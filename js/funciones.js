@@ -1,7 +1,8 @@
 //cuando hicimos la api del tiempo hicimos esto, lo puedo coger de ejemplo también
 
 document.addEventListener('DOMContentLoaded', ()=>{
-    const url = 'http://localhost/ApiBiblioteca-MAIN/api/libros';
+  const url = 'api/index.php/libros';
+    // const url = 'http://localhost/ApiBiblioteca-MAIN/api/libros';
   const divLibros = document.getElementById('divLibros');
   const modal      = document.getElementById('modal');
   const modalImg   = document.getElementById('modal-imagen');
